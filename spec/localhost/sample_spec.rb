@@ -35,7 +35,6 @@ file_list = %w(
   /opt/cni/bin/sbr
   /opt/cni/bin/static
   /opt/cni/bin/vlan
-  /opt/cni/bin/bogus
 )
 
 file_list.each do |file_present|
