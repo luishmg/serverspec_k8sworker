@@ -23,7 +23,7 @@ module_list.each do |module_enabled|
   end
 end
 
-file_list = %w(
+bin_file_list = %w(
   /usr/local/bin/kubectl
   /opt/cni/bin/bridge
   /opt/cni/bin/dhcp
@@ -37,7 +37,7 @@ file_list = %w(
   /opt/cni/bin/vlan
 )
 
-file_list.each do |file_present|
+bin_file_list.each do |file_present|
   describe file("#{file_present}") do
     it { should be_file }
     it { should be_mode 755 }
@@ -49,5 +49,22 @@ file_list.each do |file_present|
     it { should be_executable.by('owner') }
     it { should be_executable.by('group') }
     it { should be_executable.by('others') }
+  end
+end
+
+conf_list = %w(
+  /etc/cni/net.d/10-bridge.conf
+  /etc/cni/net.d/99-loopback.conf
+)
+
+conf_list.each do |file_present|
+  describe file("#{file_present}") do
+    it { should be_file }
+    it { should be_mode 640 }
+    it { should be_owned_by 'root' }
+    it { should be_grouped_into 'root' }
+    it { should be_readable.by('owner') }
+    it { should be_readable.by('group') }
+    it { should be_writable.by('owner') }
   end
 end
