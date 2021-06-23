@@ -55,6 +55,8 @@ end
 conf_list = %w(
   /etc/cni/net.d/10-bridge.conf
   /etc/cni/net.d/99-loopback.conf
+  /etc/containerd/config.toml
+  /etc/systemd/system/containerd.service
 )
 
 conf_list.each do |file_present|
